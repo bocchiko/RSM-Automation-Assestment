@@ -11,6 +11,7 @@ class EnvironmentSetup(unittest.TestCase):
         chrome_options.add_argument("--disable-blink-features=AutomationControlled")
         chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
         chrome_options.add_experimental_option("useAutomationExtension", False)
+        chrome_options.add_argument("--incognito")
 
         service = Service(binary_path)
         self.driver = webdriver.Chrome(service=service, options=chrome_options)
