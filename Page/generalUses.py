@@ -25,7 +25,7 @@ class GeneralUses(softest.TestCase):
         pswd_input.clear()
         pswd_input.send_keys(password)
 
-        login_btn = "//div[@class='flex items-center justify-end mt-4']//button"
+        login_btn = "//div[@class='flex items-center justify-end mt-4 space-x-3']//button"
         wait.until(EC.element_to_be_clickable((By.XPATH, login_btn)))
         wait.until(EC.element_to_be_clickable((By.XPATH, login_btn))).click()
 
