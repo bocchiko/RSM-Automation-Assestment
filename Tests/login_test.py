@@ -1,7 +1,6 @@
 import sys
 import os
-# Commit de prueba
-# Agregar el directorio raíz al sys.path
+
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from Utilities.environmentsetup import EnvironmentSetup
 from Page.generalUses import GeneralUses

@@ -32,3 +32,14 @@ class GeneralUses(softest.TestCase):
         success_msg = "//div[contains(text(), ' logged in! ')]"
         wait.until(EC.presence_of_element_located((By.XPATH, success_msg)))
         self.driver.save_screenshot("evidence/logged.png")
+
+    def navigate_to_profile(self):
+        wait = WebDriverWait(self.driver, 15)
+
+        wait.until(EC.presence_of_element_located((By.XPATH, "//div[contains(text(), ' logged in! ')]")))
+
+        user_menu = wait.until(EC.element_to_be_clickable((By.XPATH, "//span[@class='inline-flex rounded-md']//button")))
+        user_menu.click()
+
+        profile_btn = wait.until(EC.element_to_be_clickable((By.XPATH, "//a[@href='https://ibc-dev-production.up.railway.app/profile']")))
+        profile_btn.click()
