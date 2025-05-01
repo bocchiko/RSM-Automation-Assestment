@@ -31,4 +31,4 @@ class GeneralUses(softest.TestCase):
 
         success_msg = "//div[contains(text(), ' logged in! ')]"
         wait.until(EC.presence_of_element_located((By.XPATH, success_msg)))
-        self.driver.save_screenshot("screenshots/logged.png")
+        self.driver.save_screenshot("evidence/logged.png")
