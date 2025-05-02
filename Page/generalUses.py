@@ -76,12 +76,9 @@ class GeneralUses(softest.TestCase):
         self.driver.save_screenshot("evidence/registered.png")
 
     def access_profile_without_login(self):
-        """Método para intentar acceder al perfil sin estar logueado"""
         wait = WebDriverWait(self.driver, 15)
         self.driver.get("https://ibc-dev-production.up.railway.app/dashboard")
         
-        # Esperamos a que aparezca el campo de login (por ejemplo, el campo de correo)
         wait.until(EC.presence_of_element_located((By.ID, "email")))
         
-        # Retorna la URL actual
         return self.driver.current_url
