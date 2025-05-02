@@ -77,8 +77,6 @@ class GeneralUses(softest.TestCase):
 
     def access_profile_without_login(self):
         wait = WebDriverWait(self.driver, 15)
-        self.driver.get("https://ibc-dev-production.up.railway.app/dashboard")
-        
-        wait.until(EC.presence_of_element_located((By.ID, "email")))
+        self.driver.get("https://ibc-dev-production.up.railway.app/profile")
         
         return self.driver.current_url
