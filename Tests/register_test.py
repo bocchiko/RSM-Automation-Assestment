@@ -1,7 +1,6 @@
 import sys
 import os
 import time
-
 from selenium.webdriver import ActionChains
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -20,18 +19,22 @@ class RegisterTest(EnvironmentSetup, softest.TestCase):
         register_link = wait.until(EC.element_to_be_clickable((By.XPATH, "//a[contains(text(), 'Register')]")))
         register_link.click()
 
-        # CASE 1: EMAIL ALREADY TAKEN, PHONE NUMBER INVALID AND PASSWORDS NOT MATCHING
-        self.fill_fields(invalid_user_register_case_1, wait)
+        case_number = 1  # Iniciar contador de casos
 
+        # CASE 1: EMAIL ALREADY TAKEN, PHONE NUMBER INVALID, PASSWORDS NOT MATCHING
+        self.fill_fields(invalid_user_register_case_1, wait)
         register_btn_xpath = "//div[@class='mt-4 flex items-center justify-end']//button"
         wait.until(EC.element_to_be_clickable((By.XPATH, register_btn_xpath))).click()
 
-        # Assert error messages
+        # Captura de pantalla del caso 1
+        self.driver.save_screenshot(f"evidence/case_{case_number}.png")
+        case_number += 1
+
         self.assert_error_message(wait, "email has already been taken")
         self.assert_error_message(wait, "phone number must be 10 digits long")
         self.assert_error_message(wait, "The password field confirmation does not match.")
 
-        # CASE 2: PASSWORD FAIL VALIDATIONS
+        # CASE 2+: PASSWORD VALIDATION CASES
         for case in passwords_test_cases:
             self.fill_fields({
                 "password": case["password"],
@@ -40,12 +43,16 @@ class RegisterTest(EnvironmentSetup, softest.TestCase):
 
             wait.until(EC.element_to_be_clickable((By.XPATH, register_btn_xpath))).click()
 
+            # Captura de pantalla por cada subcaso de contraseña
+            self.driver.save_screenshot(f"evidence/case_{case_number}.png")
+            case_number += 1
+
             self.assert_error_message(wait, case["error"])
 
         self.assert_all()
         print("Test Passed: OK")
 
-    def fill_fields(self,fields: dict, wait: WebDriverWait):
+    def fill_fields(self, fields: dict, wait: WebDriverWait):
         for field_id, value in fields.items():
             time.sleep(1)
             input_element = wait.until(EC.element_to_be_clickable((By.ID, field_id)))
