@@ -75,12 +75,13 @@ class GeneralUses(softest.TestCase):
         
         self.driver.save_screenshot("evidence/registered.png")
 
-    def go2_dashboard(self):
-        """Intenta acceder directamente al perfil sin iniciar sesión"""
+    def access_profile_without_login(self):
+        """Método para intentar acceder al perfil sin estar logueado"""
         wait = WebDriverWait(self.driver, 15)
-        profile_url = "https://ibc-dev-production.up.railway.app/dashboard"  # Ajusta si es distinta
-        self.driver.get(profile_url)
-
-        # Espera que cargue la pantalla de login (no debe permitir acceso directo al perfil)
-        wait.until(EC.presence_of_element_located((By.ID, "email")))  # Campo de login visible
+        self.driver.get("https://ibc-dev-production.up.railway.app/dashboard")
+        
+        # Esperamos a que aparezca el campo de login (por ejemplo, el campo de correo)
+        wait.until(EC.presence_of_element_located((By.ID, "email")))
+        
+        # Retorna la URL actual
         return self.driver.current_url
