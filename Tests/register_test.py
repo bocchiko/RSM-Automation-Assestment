@@ -27,7 +27,7 @@ class RegisterTest(EnvironmentSetup, softest.TestCase):
         wait.until(EC.element_to_be_clickable((By.XPATH, register_btn_xpath))).click()
 
         # Captura de pantalla del caso 1
-        self.driver.save_screenshot(f"evidence/case_{case_number}.png")
+        self.driver.save_screenshot(f"evidence/case_register_fail_{case_number}.png")
         case_number += 1
 
         self.assert_error_message(wait, "email has already been taken")
@@ -44,7 +44,7 @@ class RegisterTest(EnvironmentSetup, softest.TestCase):
             wait.until(EC.element_to_be_clickable((By.XPATH, register_btn_xpath))).click()
 
             # Captura de pantalla por cada subcaso de contraseña
-            self.driver.save_screenshot(f"evidence/case_{case_number}.png")
+            self.driver.save_screenshot(f"evidence/case_register_fail_password_{case_number}.png")
             case_number += 1
 
             self.assert_error_message(wait, case["error"])
