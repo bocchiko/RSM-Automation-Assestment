@@ -24,3 +24,17 @@ class TestLogin(EnvironmentSetup, softest.TestCase):
         self.soft_assert(self.assertIn, "You're logged in!", message_text)
         print(f"Mensaje de login detectado: {message_text}")
         self.assert_all()
+
+    def test_login_fail(self):
+        gu = GeneralUses(self.driver)
+        gu.login_fail("test@example.com", "sqsqdcevrwwqd")
+
+        wait = WebDriverWait(self.driver, 15)
+        error_xpath = "//p[contains(text(), 'These credentials do not match our records.')]"
+
+        message_element = wait.until(EC.visibility_of_element_located((By.XPATH, error_xpath)))
+        message_text = message_element.text
+
+        self.soft_assert(self.assertIn, "These credentials do not match our records.", message_text)
+        print(f"Mensaje de login detectado: {message_text}")
+        self.assert_all()
