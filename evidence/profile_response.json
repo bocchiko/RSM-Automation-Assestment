@@ -1,0 +1,36 @@
+{
+    "component": "Profile/Edit",
+    "props": {
+        "errors": {},
+        "auth": {
+            "user": {
+                "id": 2,
+                "name": "Test",
+                "email": "test@example.com",
+                "phone_number": "2924590836",
+                "user_profile_image": "user_profile_photos/cBMJYbolgxNABu69HUtH455wCDa2d6G2LFtRy82e.png",
+                "created_at": "1 day ago",
+                "updated_at": "23 hours ago"
+            },
+            "user_permissions": [
+                "view marketing case studies",
+                "create marketing case studies",
+                "edit marketing case studies",
+                "upload marketing case studies files",
+                "download marketing case studies files",
+                "delete marketing case studies files",
+                "delete marketing case studies"
+            ]
+        },
+        "flash": {
+            "type": null,
+            "message": null
+        },
+        "mustVerifyEmail": false,
+        "status": null
+    },
+    "url": "/profile",
+    "version": "2c8db8ab7187d994ab18b024bca0c724",
+    "clearHistory": false,
+    "encryptHistory": false
+}
