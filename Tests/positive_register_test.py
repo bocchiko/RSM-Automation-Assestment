@@ -16,7 +16,7 @@ class TestRegister(EnvironmentSetup, softest.TestCase):
         random_name = ''.join(random.choices(string.ascii_lowercase, k=6))
         random_email = f"{random_name}@example.com"
         
-        # Llamar al método de registro
+        # Calls the method from general Uses
         gu.register(random_name, random_email, "1234567890", "Password123")
         
         wait = WebDriverWait(self.driver, 15)

@@ -16,7 +16,7 @@ class TestAccessControl(EnvironmentSetup, softest.TestCase):
         expected_url = "https://ibc-dev-production.up.railway.app/"
 
         self.soft_assert(self.assertEqual, expected_url, current_url)
-        print(f"Redirigido correctamente a: {current_url}")
+        print(f"Redirected to: {current_url}")
 
         self.assert_all()
 
