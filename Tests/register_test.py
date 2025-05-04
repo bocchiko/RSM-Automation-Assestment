@@ -19,14 +19,14 @@ class RegisterTest(EnvironmentSetup, softest.TestCase):
         register_link = wait.until(EC.element_to_be_clickable((By.XPATH, "//a[contains(text(), 'Register')]")))
         register_link.click()
 
-        case_number = 1  # Iniciar contador de casos
+        case_number = 1  # Initialize case number
 
         # CASE 1: EMAIL ALREADY TAKEN, PHONE NUMBER INVALID, PASSWORDS NOT MATCHING
         self.fill_fields(invalid_user_register_case_1, wait)
         register_btn_xpath = "//div[@class='mt-4 flex items-center justify-end']//button"
         wait.until(EC.element_to_be_clickable((By.XPATH, register_btn_xpath))).click()
 
-        # Captura de pantalla del caso 1
+        # screenshot for the first case
         self.driver.save_screenshot(f"evidence/case_register_fail_{case_number}.png")
         case_number += 1
 
@@ -43,7 +43,7 @@ class RegisterTest(EnvironmentSetup, softest.TestCase):
 
             wait.until(EC.element_to_be_clickable((By.XPATH, register_btn_xpath))).click()
 
-            # Captura de pantalla por cada subcaso de contraseña
+            # screenshot for the password validation cases
             self.driver.save_screenshot(f"evidence/case_register_fail_password_{case_number}.png")
             case_number += 1
 
